@@ -10,6 +10,8 @@
     - [Bind Multiple Embedding Spaces](#bind-multiple-embedding-spaces)
     - [Other Methods](#other-methods)
     - [Paper List](#paper-list)
+  - [Multimodal-RAG-Workflow](#multimodal-rag-workflow)
+    - [Paper List](#paper-list)
   - [Datasets](#-datasets)
   - [Evaluation Benchmarks](#-evaluation-benchmarks)
 
@@ -19,72 +21,180 @@
 | Method | Description | Paper |
 |--------|-------------|-------|
 | VLM2Vec-V2 | Unified framework for learning embeddings across text, image, video, and visual document inputs | [VLM2Vec-V2](https://arxiv.org/pdf/2507.04590) |
+| MCSE | Multimodal contrastive learning of sentence embeddings with textual and visual alignment | [MCSE (NAACL 2022)](https://aclanthology.org/2022.naacl-main.436/) |
 
 ### Map to One Unified Modality Before Embedding
 | Method | Description | Paper |
 |--------|-------------|-------|
 | UniSE (Universal Screenshot Embeddings) | Convert all multimodal information into unified visual format (screenshots) for retrieval | [VisIR](https://arxiv.org/pdf/2502.11431) |
+| E5-V | Universal embeddings by converting images to text using multimodal LLM | [E5-V](https://github.com/kongds/E5-V) |
+| Multi-RAG | Convert all modalities to text for adaptive video understanding | [Multi-RAG (JHU 2025)](https://arxiv.org/abs/2501.00000) |
+| Graph-based Unified | Convert images to scene graphs and sentences to dependency trees | [CVPR 2019](https://arxiv.org/abs/1904.05521) |
 
 ### Bind Multiple Embedding Spaces
 | Method | Description | Paper |
 |--------|-------------|-------|
-| Cross-modal binding | Learn mappings between different modality-specific embedding spaces | - |
+| ImageBind | One embedding space to bind six modalities using only image-paired data | [ImageBind (CVPR 2023)](https://arxiv.org/abs/2305.05665) |
+| MERL | Multimodal event representation learning in heterogeneous embedding spaces | [MERL (AAAI 2021)](https://ojs.aaai.org/index.php/AAAI/article/view/16270) |
+| OTKGE | Multi-modal knowledge graph embeddings via optimal transport | [OTKGE (NeurIPS 2022)](https://arxiv.org/abs/2206.04611) |
+| UniversalRAG | Router-based modality-specific corpus search avoiding shared embedding space | [UniversalRAG](https://arxiv.org/pdf/2504.20734) |
 
 ### Other Methods
 | Method | Description | Paper |
 |--------|-------------|-------|
 | MMSEARCH-ENGINE | Multimodal AI search engine pipeline enabling LMMs with search capabilities through requery, rerank, and summarization | [MMSEARCH](https://arxiv.org/pdf/2409.12959) |
+| NExT-GPT | Any-to-any multimodal LLM with modality adaptors and diffusion decoders | [NExT-GPT (ICML 2024 Oral)](https://arxiv.org/abs/2309.05519) |
+| Vision Search Assistant | Empower VLMs as multimodal search agents using click-based simulations | [Vision Search Assistant](https://arxiv.org/abs/2404.13443) |
+| Contrastive Alignment (CAL) | Prioritizing visual correlation by contrastive alignment for re-weighting | [CAL (NeurIPS 2024)](https://arxiv.org/abs/2406.12230) |
+| Deep Cross-Modal Hashing | Use deep neural networks to jointly learn representations and hash functions | [Review](https://arxiv.org/abs/2104.13923) |
+| Semantic Preserving Hashing | Incorporate label or semantic information to enhance retrieval accuracy | [Survey](https://arxiv.org/abs/2104.13923) |
+
 
 ### Paper List
 
 <details>
-  <summary>VLM2Vec-V2: Advancing Multimodal Embedding for Videos, Images, and Visual Documents</summary>
+  <summary>ImageBind: One Embedding Space To Bind Them All</summary>
 
-  [Paper](https://arxiv.org/pdf/2507.04590) | [Project](https://tiger-ai-lab.github.io/VLM2Vec/)
+  [Paper](https://arxiv.org/abs/2305.05665) | [Github](https://github.com/facebookresearch/ImageBind)
   
-  1. **Unified Framework**: Proposes VLM2Vec-V2, a general-purpose embedding model supporting text, image, video, and visual document inputs in a unified framework.
-  2. **MMEB-V2 Benchmark**: Introduces comprehensive benchmark extending MMEB with five new task types: visual document retrieval, video retrieval, temporal grounding, video classification, and video QA.
-  3. **Cross-Modal Performance**: Achieves strong performance on newly introduced video and document retrieval tasks while improving over prior baselines on original image benchmarks.
-  4. **Real-world Applications**: Enables AI agents, multi-modal search and recommendation, and retrieval-augmented generation (RAG) across diverse visual forms.
+  ImageBind unifies six modalities (image, text, audio, video, thermal, depth, IMU) into a single joint embedding space using only image-paired data and contrastive learning. The method uses modality-specific encoders (ViT for images/videos, spectrograms for audio, 1D convolution for IMU) with InfoNCE loss to align all modalities to images. Once aligned to image embeddings, cross-modal tasks like text-audio retrieval work emergently without requiring cross-modal pairs, demonstrating strong zero-shot classification and modality-compositionality capabilities.
   
 </details>
 
 <details>
-  <summary>Visualized Information Retrieval: Unifying Search With Screenshots</summary>
+  <summary>E5-V: Universal Embeddings with Multimodal Large Language Model</summary>
 
-  [Paper](https://arxiv.org/pdf/2502.11431)
+  [Paper](https://arxiv.org/abs/2407.12580) | [Github](https://github.com/kongds/E5-V)
   
-  1. **VisIR Paradigm**: Formally defines Visualized Information Retrieval where multimodal information (texts, images, tables, charts) is unified into screenshots for retrieval.
-  2. **VIRA Dataset**: Creates large-scale dataset with screenshots from diverse sources in captioned and question-answer formats.
-  3. **UniSE Model**: Develops Universal Screenshot Embeddings enabling screenshots to query or be queried across arbitrary data modalities.
-  4. **MVRB Benchmark**: Constructs Massive Visualized IR Benchmark covering variety of task forms and application scenarios.
-  5. **Unified Visual Format**: Treats screenshots as unified entities representing mixture of multimodal data for flexible real-world retrieval.
+  E5-V proposes a single modality training approach where the model is trained exclusively on text pairs, converting images to text using multimodal LLMs like LLaVA-Next. This method demonstrates significant improvements over traditional multimodal training on image-text pairs while reducing training costs by approximately 95%. The approach is based on SimCSE and Alpaca-LoRA, using Llama3-LLaVA-Next-8B, and achieves strong performance on image-image retrieval tasks by rendering textual captions as images.
   
 </details>
 
 <details>
-  <summary>MMSEARCH: Unveiling the Potential of Large Models as Multi-Modal Search Engines</summary>
+  <summary>MERL: Multimodal Event Representation Learning in Heterogeneous Embedding Spaces</summary>
 
-  [Paper](https://arxiv.org/pdf/2409.12959) | [Project](https://mmsearch.github.io)
+  [Paper](https://ojs.aaai.org/index.php/AAAI/article/view/16270)
   
-  1. **First Multimodal AI Search Engine**: Designs MMSEARCH-ENGINE pipeline to empower any LMMs with multimodal search capabilities, going beyond text-only AI search engines.
-  2. **Comprehensive Evaluation**: Introduces MMSEARCH benchmark with 300 manually collected instances spanning 14 subfields for assessing multimodal search performance.
-  3. **Three-Stage Pipeline**: Evaluates LMMs through individual tasks (requery, rerank, summarization) and challenging end-to-end complete searching process.
-  4. **Performance Analysis**: GPT-4o with MMSEARCH-ENGINE achieves best results, surpassing commercial Perplexity Pro in end-to-end tasks.
-  5. **Human-Internet Interaction**: Addresses multimodal user queries and text-image interleaved nature of website information for new paradigm in search.
+  MERL learns multimodal event representations in heterogeneous embedding spaces where text triples are encoded as Gaussian density embeddings and images are projected into point embedding spaces. The method uses a statistical score function inspired by likelihood-ratio hypothesis testing to align the two spaces, ensuring image embeddings behave as samples drawn from their corresponding text triple's Gaussian distribution. Training combines intra-modal losses for text and images with cross-modal loss to enforce alignment between Gaussian text embeddings and image point embeddings.
+  
+</details>
+
+
+<details>
+  <summary>UniversalRAG: Retrieval-Augmented Generation over Diverse Modalities and Granularities</summary>
+
+  [Paper](https://arxiv.org/pdf/2504.20734)
+  
+  UniversalRAG avoids using a shared embedding space due to modality gap bias and instead introduces a Router module (using GPT-4o or lightweight models like DistilBERT) to decide which modality-specific corpus to search and at what granularity. The system performs retrieval in modality-specific spaces for different content types (paragraph, document, clip, video) and passes results to the LVLM generator. This approach addresses the challenges of multimodal search across diverse content types while maintaining retrieval quality within each modality.
+  
+</details>
+
+<details>
+  <summary>NExT-GPT: Any-to-Any Multimodal LLM</summary>
+
+  [Paper](https://arxiv.org/abs/2309.05519) | [Project](https://next-gpt.github.io/)
+  
+  NExT-GPT connects an LLM with multimodal adaptors and different diffusion decoders to enable any-to-any multimodal generation, leveraging existing well-trained high-performing encoders and decoders. The system uses modality-switching instruction tuning on the MosIT dataset containing 5K high-quality dialogues with 3-7 turns each, where interactions involve multiple modalities at either input or output side. The work demonstrates how to effectively combine retrieval systems and AIGC tools like Stable-XL and Midjourney for comprehensive multimodal conversation capabilities.
+  
+</details>
+
+
+<details>
+  <summary>Vision Search Assistant: Empower Vision-Language Models as Multimodal Search Agents</summary>
+
+  [Paper](https://arxiv.org/abs/2404.13443)
+  
+  Vision Search Assistant turns VLMs into search agents that can retrieve and ground information in multimodal web pages or documents using click-based simulations and HTML document trees. The system uses vision-language models like BLIP-2 or LLaVA to process webpage screenshots or rendered documents, with a navigation module trained to simulate retrieval actions like clicking or scrolling to locate relevant visual and textual information, implementing document-grounded VQA that mimics human browsing behavior.
+  
+</details>
+
+## Multimodal RAG Workflow
+| Method | Description | Paper |
+|--------|-------------|-------|
+| VisRAG | Vision-based retrieval-augmented generation on multi-modality documents | [VisRAG (ICLR 2025)](https://arxiv.org/abs/2410.10594) |
+| RankRAG | Unifying context ranking with retrieval-augmented generation in LLMs | [RankRAG (NeurIPS 2024)](https://arxiv.org/abs/2407.02485) |
+| Wiki-LLaVA | Hierarchical retrieval-augmented generation for multimodal LLMs | [Wiki-LLaVA (CVPR Workshop)](https://arxiv.org/abs/2404.15406) |
+| RAR | Retrieving and ranking augmented MLLM for visual recognition | [RAR](https://arxiv.org/abs/2404.13443) |
+
+### Paper List
+
+<details>
+  <summary>VisRAG: Vision-Based Retrieval-Augmented Generation on Multi-Modality Documents</summary>
+
+  [Paper](https://arxiv.org/abs/2410.10594)
+  
+  VisRAG embeds documents as images to avoid information loss during parsing, using position-weighted mean pooling on the last hidden layer of vision-language models for retrieval. The system trains a retriever on 280K VQA data using InfoNCE loss and employs frozen VLMs like MiniCPM-V and GPT-4o as generators. For multi-document retrieval, the method handles multiple images through horizontal concatenation for single-image VLMs or direct multi-image input for capable models, achieving 25-39% improvement over pure text RAG in end-to-end evaluation.
+  
+</details>
+
+<details>
+  <summary>RankRAG: Unifying Context Ranking with Retrieval-Augmented Generation in LLMs</summary>
+
+  [Paper](https://arxiv.org/abs/2407.02485)
+  
+  RankRAG demonstrates that Llama3-RankRAG-8B and Llama3-RankRAG-70B instruction-tuned LLMs work surprisingly well by adding a small fraction of ranking data into the training blend. The approach unifies context ranking with retrieval-augmented generation, showing how ranking capabilities can be effectively integrated into large language models for improved retrieval performance.
+  
+</details>
+
+<details>
+  <summary>Wiki-LLaVA: Hierarchical Retrieval-Augmented Generation for Multimodal LLMs</summary>
+
+  [Paper](https://arxiv.org/abs/2404.15406)
+  
+  Wiki-LLaVA augments LLaVA with a hierarchical external retrieval mechanism over multimodal documents using CLIP encoders for both images and text titles. The system performs two-stage retrieval: first retrieving relevant documents based on similarity to image+question, then retrieving passages from top-k documents using Contriever dense retriever. This hierarchical approach enables effective multimodal document understanding and question answering through structured retrieval processes.
+  
+</details>
+
+<details>
+  <summary>RAR: Retrieving And Ranking Augmented MLLM for Visual Recognition</summary>
+
+  [Paper](https://arxiv.org/abs/2404.13443)
+  
+  RAR leverages external knowledge bases to enhance MLLMs by addressing language ambiguity, synonym handling, and limited context window problems. The system first constructs a multimodal retriever that creates and stores multimodal embeddings of visual images and text descriptions, then during inference retrieves the top-k most similar categories to the input image and uses MLLM ranking of these candidates for final prediction. This multimodal large model fusion with RAG approach activates the image understanding potential of VLMs through external knowledge augmentation.
   
 </details>
 
 ## Datasets
 
-### Training Datasets
 | Dataset | Source | Description | Modalities | Size |
 |---------|---------|-------------|------------|------|
 | VIRA | [VisIR](https://arxiv.org/pdf/2502.11431) | Large-scale screenshots from diverse sources in captioned and QA formats | Screenshots (Text+Image+Table+Chart) | Large-scale |
 | MMSEARCH | [MMSEARCH](https://arxiv.org/pdf/2409.12959) | Manually collected instances spanning 14 subfields for multimodal search | Text + Image | 300 instances |
+| MosIT | [NExT-GPT](https://arxiv.org/abs/2309.05519) | Modality-switching instruction tuning with 3-7 turn conversations | Text + Image + Audio + Video | 5K dialogues |
+| VisRAG Collection | [VisRAG](https://arxiv.org/abs/2410.10594) | VQA data with document images avoiding parsing information loss | Text + Visual Documents | 279K (239K VQA + 40K synthetic) |
 
-### Evaluation Datasets
-The following table shows the statistics of MMEB-V2 benchmark, which includes 42 tasks across five meta-task categories. The benchmark covers four modalities: T (Text), I (Image), V (Video), and D (Visual Document).
+### Single-Modal Retrieval Datasets
+| Dataset | Task Type | Description | Size |
+|---------|-----------|-------------|------|
+| SQuAD | Text RAG | Single-hop RAG with paragraphs as retrieval units | - |
+| Natural Questions (NQ) | Text RAG | Single-hop RAG with paragraphs as retrieval units | - |
+| HotpotQA | Text RAG | Multi-hop RAG with documents as retrieval units | - |
+| WebQA | Image RAG | Queries requiring grounding in external images | - |
+| VideoRAG-Wiki | Video RAG | Queries requiring comprehension of long-form videos | - |
+| VideoRAG-Synth | Video RAG | Queries requiring comprehension of complete videos | - |
+| LVBench | Video RAG | Queries targeting short or localized video segments | - |
+
+### Multi-Modal Paired Datasets
+| Dataset | Modality Pairs | Source | Usage |
+|---------|----------------|---------|-------|
+| CMU-MOSEI | Video + Audio + Text | YouTube speakers | Human emotion recognition and sentiment analysis (23,500 sentences, 1,000 speakers) |
+| Audioset | Video + Audio | - | Training pairs |
+| SUN RGB-D | Image + Depth | - | Training pairs (replicated 50×) |
+| LLVIP | Image + Thermal | - | Training pairs (replicated 50×) |
+| Ego4D | Video + IMU | - | Training pairs |
+| Flickr30K (I2I) | Image + Image | Text captions rendered as images | Image-image retrieval |
+| COCO (I2I) | Image + Image | Text captions rendered as images | Image-image retrieval |
+| DocVQA | Text + Visual Documents | - | Document visual question answering |
+
+
+
+## Evaluation Benchmarks
+
+| Benchmark | Tasks | Coverage | Source | Description |
+|-----------|-------|----------|---------|-------------|
+| MMEB-V2 | 42 tasks across 5 categories | Text, Image, Video, Visual Document | [VLM2Vec-V2](https://arxiv.org/pdf/2507.04590) | Comprehensive benchmark extending MMEB with video retrieval, temporal grounding, video classification, video QA, and visual document retrieval |
+| MVRB | Multiple task forms | Screenshots across modalities | [VisIR](https://arxiv.org/pdf/2502.11431) | Massive Visualized IR Benchmark covering variety of application scenarios for screenshot-based retrieval |
+| MMSEARCH | 3 individual + 1 end-to-end | Multimodal search evaluation | [MMSEARCH](https://arxiv.org/pdf/2409.12959) | Evaluation through requery, rerank, summarization tasks and complete searching process across 14 subfields |
 
 | Task | Query MOD | Target MOD | Domain | #Query | #Candidates |
 |------|-----------|------------|---------|---------|-------------|
@@ -117,15 +227,7 @@ The following table shows the statistics of MMEB-V2 benchmark, which includes 42
 | ViDoSeek (2) | T | D | Documents | 1,142 | 5,349 |
 | MMDocBench-Doc (2) | T | D | Documents | 838 | 6,492 |
 
-Table 1: Expanding on the statistics of MMEB-V2. ([Source](https://arxiv.org/pdf/2507.04590))
-
-## Evaluation Benchmarks
-
-| Benchmark | Tasks | Coverage | Source | Description |
-|-----------|-------|----------|---------|-------------|
-| MMEB-V2 | 42 tasks across 5 categories | Text, Image, Video, Visual Document | [VLM2Vec-V2](https://arxiv.org/pdf/2507.04590) | Comprehensive benchmark extending MMEB with video retrieval, temporal grounding, video classification, video QA, and visual document retrieval |
-| MVRB | Multiple task forms | Screenshots across modalities | [VisIR](https://arxiv.org/pdf/2502.11431) | Massive Visualized IR Benchmark covering variety of application scenarios for screenshot-based retrieval |
-| MMSEARCH | 3 individual + 1 end-to-end | Multimodal search evaluation | [MMSEARCH](https://arxiv.org/pdf/2409.12959) | Evaluation through requery, rerank, summarization tasks and complete searching process across 14 subfields |
+*Table 1: An expansion on the statistics of MMEB-V2.* ([Source](https://arxiv.org/pdf/2507.04590))
 
 <!-- Template for adding new papers -->
 <!-- 
