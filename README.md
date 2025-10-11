@@ -2,15 +2,16 @@
 > A curated list of Multi-Modal embedding and retrieval methods, datasets, and evaluation benchmarks.
 
 ## Table of Contents
-- [Awesome-Multi-Modal-Retrieval](#awesome-multi-modal-retrieval)
+- [Awesome-Multi-Modal-Embedding](#awesome-multi-modal-embedding)
   - [Table of Contents](#table-of-contents)
-  - [Multi-Modal Retrieval](#-multi-modal-retrieval)
+  - [Multi-Modal Retrieval](#multi-modal-retrieval)
     - [Unified Multi-Modal Embedding with MLLMs](#unified-multi-modal-embedding-with-mllms)
     - [Map to One Unified Modality Before Embedding](#map-to-one-unified-modality-before-embedding)
     - [Multi-Modal Embedding](#multi-modal-embedding)
+    - [Composed Image Retrieval](#composed-image-retrieval)
     - [Agentic and Search](#agentic-and-search)
   - [Multimodal-RAG-Workflow](#multimodal-rag-workflow)
-  - [Datasets](#-datasets)
+  - [Datasets](#datasets)
 
 ## Multi-Modal Retrieval
 
@@ -26,10 +27,25 @@
 </details>
 
 
-| Method | Description | Paper |
-|--------|-------------|-------|
-| VLM2Vec-V2 | Unified framework for learning embeddings across text, image, video, and visual document inputs | [VLM2Vec-V2](https://arxiv.org/pdf/2507.04590) |
-| MCSE | Multimodal contrastive learning of sentence embeddings with textual and visual alignment | [MCSE (NAACL 2022)](https://aclanthology.org/2022.naacl-main.436/) |
+<details>
+  <summary>VLM2Vec-V2: Unified Framework for Vision-Language Models</summary>
+
+  [Paper](https://arxiv.org/pdf/2507.04590)
+  
+  TLDR: VLM2Vec-V2 is a unified framework for learning embeddings across text, image, video, and visual document inputs, extending the MMEB benchmark with 5 new task types (video retrieval, temporal grounding, video classification, video QA, and visual document retrieval). The model achieves best-in-class performance on newly introduced video and document retrieval tasks while improving over prior baselines on original image benchmarks, providing a general-purpose embedding solution for diverse multimodal applications.
+  
+</details>
+
+
+<details>
+  <summary>MCSE: Multimodal Contrastive Learning of Sentence Embeddings</summary>
+
+  [Paper](https://aclanthology.org/2022.naacl-main.436/)
+  
+  TLDR: MCSE extends the SimCSE framework with a multimodal contrastive objective that combines two learning signals: maximizing agreement between positive sentence pairs and aligning sentences with their corresponding images. The method uses hybrid training on a small multimodal dataset combined with a large text-only corpus, achieving a 1.7% improvement in state-of-the-art average Spearman's correlation on semantic textual similarity benchmarks while better aligning semantically similar sentences.
+  
+</details>
+
 
 ### Map to One Unified Modality Before Embedding
 | Method | Description | Paper |
