@@ -32,7 +32,7 @@
 
   [Paper](https://arxiv.org/pdf/2507.04590)
   
-  TLDR: VLM2Vec-V2 is a unified framework for learning embeddings across text, image, video, and visual document inputs. The model provides a comprehensive approach to multi-modal representation learning that handles diverse input modalities within a single framework.
+  TLDR: VLM2Vec-V2 is a unified framework for learning embeddings across text, image, video, and visual document inputs, extending the MMEB benchmark with 5 new task types (video retrieval, temporal grounding, video classification, video QA, and visual document retrieval). The model achieves best-in-class performance on newly introduced video and document retrieval tasks while improving over prior baselines on original image benchmarks, providing a general-purpose embedding solution for diverse multimodal applications.
   
 </details>
 
@@ -42,7 +42,7 @@
 
   [Paper](https://aclanthology.org/2022.naacl-main.436/)
   
-  TLDR: MCSE performs multimodal contrastive learning of sentence embeddings with textual and visual alignment. The method leverages contrastive learning to align sentence representations across text and visual modalities, enabling better cross-modal understanding and retrieval.
+  TLDR: MCSE extends the SimCSE framework with a multimodal contrastive objective that combines two learning signals: maximizing agreement between positive sentence pairs and aligning sentences with their corresponding images. The method uses hybrid training on a small multimodal dataset combined with a large text-only corpus, achieving a 1.7% improvement in state-of-the-art average Spearman's correlation on semantic textual similarity benchmarks while better aligning semantically similar sentences.
   
 </details>
 
