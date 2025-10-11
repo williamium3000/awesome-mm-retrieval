@@ -2,15 +2,16 @@
 > A curated list of Multi-Modal embedding and retrieval methods, datasets, and evaluation benchmarks.
 
 ## Table of Contents
-- [Awesome-Multi-Modal-Retrieval](#awesome-multi-modal-retrieval)
+- [Awesome-Multi-Modal-Embedding](#awesome-multi-modal-embedding)
   - [Table of Contents](#table-of-contents)
-  - [Multi-Modal Retrieval](#-multi-modal-retrieval)
+  - [Multi-Modal Retrieval](#multi-modal-retrieval)
     - [Unified Multi-Modal Embedding with MLLMs](#unified-multi-modal-embedding-with-mllms)
     - [Map to One Unified Modality Before Embedding](#map-to-one-unified-modality-before-embedding)
     - [Multi-Modal Embedding](#multi-modal-embedding)
+    - [Composed Image Retrieval](#composed-image-retrieval)
     - [Agentic and Search](#agentic-and-search)
   - [Multimodal-RAG-Workflow](#multimodal-rag-workflow)
-  - [Datasets](#-datasets)
+  - [Datasets](#datasets)
 
 ## Multi-Modal Retrieval
 
