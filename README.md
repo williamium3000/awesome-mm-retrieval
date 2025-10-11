@@ -27,10 +27,25 @@
 </details>
 
 
-| Method | Description | Paper |
-|--------|-------------|-------|
-| VLM2Vec-V2 | Unified framework for learning embeddings across text, image, video, and visual document inputs | [VLM2Vec-V2](https://arxiv.org/pdf/2507.04590) |
-| MCSE | Multimodal contrastive learning of sentence embeddings with textual and visual alignment | [MCSE (NAACL 2022)](https://aclanthology.org/2022.naacl-main.436/) |
+<details>
+  <summary>VLM2Vec-V2: Unified Framework for Vision-Language Models</summary>
+
+  [Paper](https://arxiv.org/pdf/2507.04590)
+  
+  TLDR: VLM2Vec-V2 is a unified framework for learning embeddings across text, image, video, and visual document inputs. The model provides a comprehensive approach to multi-modal representation learning that handles diverse input modalities within a single framework.
+  
+</details>
+
+
+<details>
+  <summary>MCSE: Multimodal Contrastive Learning of Sentence Embeddings</summary>
+
+  [Paper](https://aclanthology.org/2022.naacl-main.436/)
+  
+  TLDR: MCSE performs multimodal contrastive learning of sentence embeddings with textual and visual alignment. The method leverages contrastive learning to align sentence representations across text and visual modalities, enabling better cross-modal understanding and retrieval.
+  
+</details>
+
 
 ### Map to One Unified Modality Before Embedding
 | Method | Description | Paper |
